@@ -12,6 +12,8 @@ public class BrickLayer : MonoBehaviour
     public GameObject SecondLevel;
     public GameObject ThirdLevel;
 
+    private const float BrickHeight = 0.36f;
+
 
 	// Use this for initialization
 	void Start ()
@@ -39,19 +41,19 @@ public class BrickLayer : MonoBehaviour
                 if (x == 0)
                 {
                     var fab = Instantiate<Brick>(OneHit);
-                    fab.transform.position = new Vector3(i + 0.51f, x + 7.82f, 0f);
+                    fab.transform.position = new Vector3(i + 0.51f, 7.82f, 0f);
                     fab.transform.parent = FirstLevel.transform;
                 }
                 if(x == 1)
                 {
                     var fab = Instantiate<Brick>(TwoHit);
-                    fab.transform.position = new Vector3(i + 0.51f, (7.82f + 0.36f), 0f);
+                    fab.transform.position = new Vector3(i + 0.51f, (7.82f + BrickHeight), 0f);
                     fab.transform.parent = SecondLevel.transform;
                 }
                 if(x == 2)
                 {
                     var fab = Instantiate<Brick>(ThreeHit);
-                    fab.transform.position = new Vector3(i + 0.51f, (7.82f + 0.36f + 0.36f), 0f);
+                    fab.transform.position = new Vector3(i + 0.51f, (7.82f + BrickHeight * 2), 0f);
                     fab.transform.parent = ThirdLevel.transform;
                 }
             }

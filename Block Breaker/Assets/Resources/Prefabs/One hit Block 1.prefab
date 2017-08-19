@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61969213630737292}
   - component: {fileID: 114445753498766968}
   m_Layer: 0
-  m_Name: Three hit Block
+  m_Name: One hit Block 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

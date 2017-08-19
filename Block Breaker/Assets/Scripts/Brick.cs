@@ -21,6 +21,7 @@ public class Brick : MonoBehaviour {
         if(timesHit >= maxHits)
         {
             Destroy(gameObject);
+            ScoreKeeper.Score += maxHits * 1000;
         }
     }
 
