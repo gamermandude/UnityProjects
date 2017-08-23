@@ -10,6 +10,15 @@ public class LevelManager : MonoBehaviour
         Application.LoadLevel(name);
     }
 
+    public void BrickDestroyed()
+    {
+        if(Brick.TotalBricks <= 0)
+        {
+            Brick.TotalBricks = 0;
+            LoadLevel("Level_02");
+        } 
+    }
+
     public void QuitRequest()
     {
         Debug.Log("Quit requested.");

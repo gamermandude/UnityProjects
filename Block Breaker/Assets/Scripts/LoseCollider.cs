@@ -6,10 +6,12 @@ using UnityEngine;
 public class LoseCollider : MonoBehaviour
 {
     private Ball theBall;
+    private LevelManager levelManager;
 	// Use this for initialization
 	void Start ()
     {
         theBall = FindObjectOfType<Ball>();
+        levelManager = FindObjectOfType<LevelManager>();
 	}
 	
 	// Update is called once per frame
@@ -30,13 +32,13 @@ public class LoseCollider : MonoBehaviour
         {
             ScoreKeeper.Lives--;
             ball.Reset();
+            Brick.TotalBricks = 0;
 
             if (ScoreKeeper.Lives < 1)
             {
                 ScoreKeeper.Reset();
                 print("TRIGGERED...");
-                var level = new LevelManager();
-                level.LoadLevel("Lose");
+                levelManager.LoadLevel("Lose");
             }
         }
     }

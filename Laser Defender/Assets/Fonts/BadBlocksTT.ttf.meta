@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: cca7265fccab584418359e8901fc789a
+timeCreated: 1503083065
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BadBlocks TT
+  fontNames:
+  - BadBlocks TT
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
