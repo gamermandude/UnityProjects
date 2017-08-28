@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
-        if(transform.position.x >= xmax || transform.position.x <= xmin)
+        if(transform.position.x > xmax || transform.position.x < xmin)
         {
             MovingRight = !MovingRight;
         }
