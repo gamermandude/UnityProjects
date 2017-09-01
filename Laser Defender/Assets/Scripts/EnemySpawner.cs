@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
     public float ymin;
     public float ymax;
 
+    public float spawnDelay = 0.5f;
+
     public float speed = 1f;
     public float padding = 10;
 
@@ -38,12 +40,33 @@ public class EnemySpawner : MonoBehaviour
         ymin = bottomMost.y;
         ymax = topMost.y;
 
+        SpawnUntilFull();
+
+	}
+    void SpawnEnemies()
+    {
         foreach (Transform child in transform)
         {
             var prefab = Instantiate(enemy, child.position, Quaternion.identity);
             prefab.transform.parent = child;
         }
-	}
+    }
+
+    void SpawnUntilFull()
+    {
+        var next = NextFreePosition();
+        if (!next)
+        {
+            return;
+        }
+
+        var prefab = Instantiate(enemy, next.position, Quaternion.identity);
+        prefab.transform.parent = next;
+        if (NextFreePosition())
+        {
+            Invoke("SpawnUntilFull", spawnDelay);
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(width, height, 0));
@@ -52,6 +75,15 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if(transform.position.x > xmax )
+        {
+            MovingRight = false;
+        }
+        else if(transform.position.x < xmin)
+        {
+            MovingRight = true;
+        }
+
         if (TrackingPlayer)
         {
             var playerPos = player.transform.position;
@@ -70,9 +102,32 @@ public class EnemySpawner : MonoBehaviour
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
-        if(transform.position.x > xmax || transform.position.x < xmin)
+        if (AllMembersDead())
         {
-            MovingRight = !MovingRight;
+            print("All members dead");
+            SpawnUntilFull();
         }
+    }
+    Transform NextFreePosition()
+    {
+        foreach(Transform child in transform)
+        {
+            if(child.childCount == 0)
+            {
+                return child;
+            }
+        }
+        return null;
+    }
+    bool AllMembersDead()
+    {
+        foreach(Transform child in transform)
+        {
+            if(child.childCount > 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
